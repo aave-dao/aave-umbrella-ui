@@ -96,6 +96,11 @@ Deploy your own instance of the application effortlessly through Vercel by simpl
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Faave-dao%2Faave-umbrella-ui)
 
+## Learn More
+
+- [FAQ](https://github.com/bgd-labs/umbrella-docs/blob/main/umbrella-faq.md)
+- [Block explorer data fetching guide](https://github.com/bgd-labs/umbrella-docs/blob/main/umbrella-raw-data-fetching.md)
+
 ## Project Structure
 
 ```
