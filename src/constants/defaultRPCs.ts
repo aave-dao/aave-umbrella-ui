@@ -5,5 +5,5 @@ export const DEFAULT_RPCS: Record<ChainId, string | undefined> = {
   [mainnet.id]: "https://rpc.ankr.com/eth",
 
   // testnets
-  [baseSepolia.id]: undefined,
+  [baseSepolia.id]: "https://sepolia.base.org",
 } as const;

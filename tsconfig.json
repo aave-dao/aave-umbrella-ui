@@ -21,7 +21,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@e2e/*": ["./e2e/*"]
     }
   },
   "include": ["next-env.d.ts", ".src/test/setup.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

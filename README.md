@@ -90,6 +90,11 @@ To start the production server:
 npm run start
 ```
 
+### End-to-End Tests (Playwright)
+
+The E2E tests are located in [`/e2e`](./e2e).
+For details on how to install, configure, and run them, check the [dedicated README](./e2e/README.md).
+
 ## Deploy your own Vercel instance
 
 Deploy your own instance of the application effortlessly through Vercel by simply clicking the button below and following the guided setup process:

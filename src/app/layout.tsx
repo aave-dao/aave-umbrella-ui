@@ -6,6 +6,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import type { Metadata } from "next";
 import { PropsWithChildren } from "react";
 import "./globals.css";
+import { isE2eTestEnabled } from '@e2e/config/e2e.constants';
 
 export const metadata: Metadata = {
   title: "Aave Umbrella",
@@ -29,7 +30,9 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        { !isE2eTestEnabled &&
         <script src="https://unpkg.com/react-scan/dist/auto.global.js" async />
+       }
       </head>
       <body
         className={`font-sans ${inter.variable} ${spaceGrotesk.variable} border-main-950 dark:border-main-500 text-main-950 dark:bg-main-950 antialiased dark:text-white`}

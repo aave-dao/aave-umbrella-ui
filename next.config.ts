@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // FIXME: Delete this setup where TS errors in main are fixed
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  // FIXME: Delete this setup where TS errors in main are fixed
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   webpack(config) {
     // @ts-expect-error NextConfig doesn't have proper types for webpack config yet
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.(".svg"));

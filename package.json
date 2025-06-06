@@ -5,13 +5,19 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:turbo": "next build --no-lint --turbopack",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
     "prepare": "husky",
-    "test:ci": "vitest related --run --passWithNoTests"
+    "test:ci": "vitest related --run --passWithNoTests",
+    "test:e2e": "NEXT_PUBLIC_E2E_TEST_ENABLED=true npx playwright test",
+    "test:e2e:ui": "NEXT_PUBLIC_E2E_TEST_ENABLED=true npx playwright test e2e/tests --ui",
+    "playwright:install": "playwright install --with-deps",
+    "playwright:install:chromium": "playwright install --with-deps chromium",
+    "warmup:anvil": "tsx e2e/config/warmup-anvil.ts"
   },
   "lint-staged": {
     "**/*.{ts,tsx,js,jsx}": [
@@ -63,6 +69,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
+    "@playwright/test": "^1.52.0",
     "@svgr/webpack": "^8.1.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -83,6 +90,7 @@
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
+    "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.1.4"
