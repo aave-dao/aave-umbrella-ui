@@ -1,15 +1,19 @@
-import { DEFAULT_RPCS } from "@/constants/defaultRPCs";
+import { RPCS } from "@/constants/rpcs";
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
+import { coinbaseWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from "@rainbow-me/rainbowkit/wallets";
 import { http } from "wagmi";
 import { baseSepolia, mainnet } from "wagmi/chains";
-import { forkedMainnet } from "./tenderly.config";
+import { mainnetFork } from "./mainnetFork";
+import { mockWallet } from "./mockedWallet";
 
 export const appChains = [
   mainnet,
 
-  // testnets
+  // testnetss
   baseSepolia,
-  ...(process.env.NEXT_PUBLIC_TENDERLY_VNETS_ENABLED === "true" ? [forkedMainnet] : []),
+
+  // forked mainnet in Tenderly
+  ...(process.env.NEXT_PUBLIC_TENDERLY_VNETS_ENABLED === "true" ? [mainnetFork] : []),
 ];
 
 export const config = getDefaultConfig({
@@ -17,13 +21,21 @@ export const config = getDefaultConfig({
   projectId: "YOUR_PROJECT_ID",
   chains: [mainnet, ...appChains.slice(1)],
   transports: {
-    [mainnet.id]: http(process.env.NEXT_PUBLIC_MAINNET || DEFAULT_RPCS[mainnet.id]),
-    [baseSepolia.id]: http(process.env.NEXT_PUBLIC_BASE_SEPOLIA || DEFAULT_RPCS[baseSepolia.id]),
+    [mainnet.id]: http(RPCS[mainnet.id]),
+    [baseSepolia.id]: http(RPCS[baseSepolia.id]),
+
     ...(process.env.NEXT_PUBLIC_TENDERLY_VNETS_ENABLED === "true"
       ? {
-          [forkedMainnet.id]: http(process.env.NEXT_PUBLIC_TENDERLY_VNET_RPC!),
+          [mainnetFork.id]: http(RPCS[mainnetFork.id]),
         }
       : {}),
   },
+  wallets: [
+    {
+      groupName: "Popular",
+      wallets: [metaMaskWallet, rainbowWallet, coinbaseWallet, walletConnectWallet],
+    },
+    ...(process.env.NEXT_PUBLIC_E2E_TEST_ENABLED === "true" ? [{ groupName: "Test", wallets: [mockWallet] }] : []),
+  ],
   ssr: false,
 });

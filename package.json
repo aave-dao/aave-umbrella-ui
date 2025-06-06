@@ -2,6 +2,7 @@
   "name": "umbrella-ui",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -10,8 +11,10 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "prepare": "husky",
-    "test:ci": "vitest related --run --passWithNoTests"
+    "test:ci": "vitest related --run --passWithNoTests",
+    "test:e2e": "npx playwright test",
+    "test:e2e:ui": "npx playwright test --ui",
+    "prepare": "husky"
   },
   "lint-staged": {
     "**/*.{ts,tsx,js,jsx}": [
@@ -63,6 +66,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
+    "@playwright/test": "^1.52.0",
     "@svgr/webpack": "^8.1.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -75,6 +79,7 @@
     "@vitejs/plugin-react": "^4.4.1",
     "@vitest/coverage-v8": "^3.1.4",
     "@vitest/ui": "^3.1.4",
+    "dotenv": "^16.5.0",
     "eslint": "^9.27.0",
     "eslint-config-next": "15.3.2",
     "husky": "^9.1.7",
