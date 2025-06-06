@@ -1,4 +1,4 @@
-import { forkedMainnet } from "@/configs/tenderly.config";
+import { mainnetFork } from "@/configs/mainnetFork";
 import { Market } from "@/types/market";
 import { AaveV3BaseSepolia, AaveV3Ethereum, UmbrellaBaseSepolia, UmbrellaEthereum } from "@bgd-labs/aave-address-book";
 
@@ -38,9 +38,9 @@ export const MARKETS: Market[] = [
   ...(process.env.NEXT_PUBLIC_TENDERLY_VNETS_ENABLED === "true"
     ? [
         {
-          id: `${forkedMainnet.id}-${AaveV3Ethereum.POOL}`,
-          name: forkedMainnet.name,
-          chainId: forkedMainnet.id,
+          id: `${mainnetFork.id}-${AaveV3Ethereum.POOL}`,
+          name: mainnetFork.name,
+          chainId: mainnetFork.id,
           poolProvider: AaveV3Ethereum.POOL_ADDRESSES_PROVIDER,
           uiPoolDataProvider: AaveV3Ethereum.UI_POOL_DATA_PROVIDER,
           oracle: AaveV3Ethereum.ORACLE,

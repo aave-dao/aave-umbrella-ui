@@ -29,7 +29,9 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script src="https://unpkg.com/react-scan/dist/auto.global.js" async />
+        {process.env.NODE_ENV === "production" && (
+          <script src="https://unpkg.com/react-scan/dist/auto.global.js" async />
+        )}
       </head>
       <body
         className={`font-sans ${inter.variable} ${spaceGrotesk.variable} border-main-950 dark:border-main-500 text-main-950 dark:bg-main-950 antialiased dark:text-white`}
