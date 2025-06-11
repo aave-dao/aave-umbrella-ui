@@ -1,12 +1,12 @@
+import { appChains } from "@/configs/wagmi";
+import { cn } from "@/utils/cn";
 import Link from "next/link";
 import { type ComponentProps, type PropsWithChildren } from "react";
 import { type Address } from "viem";
-import { cn } from "@/utils/cn";
-import { appChains } from "@/configs/wagmi";
 
 const getScannerUrl = (chainId: number) => {
   const chainConfig = appChains.find((chain) => chain.id === chainId);
-  return chainConfig?.blockExplorers.default.url;
+  return chainConfig?.blockExplorers?.default.url;
 };
 
 export type ScannerLinkProps = PropsWithChildren &
