@@ -13,12 +13,8 @@ export const ModalBody = forwardRef<
 >(({ children, className, ...props }, ref) => {
   return (
     <DialogPrimitives.Portal>
-      <DialogPrimitives.Overlay className="fixed top-0 right-0 bottom-0 left-0 grid place-items-center overflow-y-auto py-14">
-        <DialogPrimitives.Content
-          ref={ref}
-          className={cn("focus:outline-none", className)}
-          {...props}
-        >
+      <DialogPrimitives.Overlay className="fixed top-0 right-0 bottom-0 left-0 grid place-items-center overflow-y-auto bg-white/80 py-14 backdrop-blur-xs">
+        <DialogPrimitives.Content ref={ref} className={cn("focus:outline-none", className)} {...props}>
           {children}
         </DialogPrimitives.Content>
       </DialogPrimitives.Overlay>
