@@ -63,6 +63,7 @@ export const WalletModal = ({ open, onOpenChange, children }: WalletModalProps) 
               <div className="flex flex-col items-center md:gap-6">
                 {!!connector?.icon ? (
                   <div className="relative">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={connector.icon} alt={connector.name} className="size-[72px] md:size-[90px]" />
                     <AssetIcon
                       chainId={chainId}

@@ -13,7 +13,6 @@ import { useIsSafeWallet } from "@/hooks/useIsSafeWallet/useIsSafeWallet";
 import { useWalletAddress } from "@/providers/WalletProvider/WalletContext";
 import { sumUpAllRewards } from "@/utils/calculations";
 import { withPositiveBalance } from "@/utils/data";
-import { CoinsIcon } from "lucide-react";
 
 export default function ClaimRewardsPage() {
   const receiver = useWalletAddress();
