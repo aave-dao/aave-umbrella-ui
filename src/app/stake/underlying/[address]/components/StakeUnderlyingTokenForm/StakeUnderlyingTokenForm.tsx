@@ -15,7 +15,7 @@ import { useSafeApproveAndStake } from "@/hooks/useSafeApproveAndStake";
 import { useStake } from "@/hooks/useStake";
 import { useTxFormSignature } from "@/providers/TxFormProvider/TxFormContext";
 import { StkToken } from "@/types/token";
-import { calculateMaxSupply } from "@/utils/calculations";
+import { calculateMaxUnderlyingStake } from "@/utils/calculations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
@@ -42,7 +42,7 @@ export const StakeUnderlyingTokenForm = ({ asset, stkToken, totalSupplied }: Sta
   const { stake, data: hash, isPending: isTxPending, error: depositError } = useStake();
 
   const { decimals, latestAnswer, symbol } = stkToken.underlying;
-  const maxAmount = calculateMaxSupply(stkToken, totalSupplied);
+  const maxAmount = calculateMaxUnderlyingStake(stkToken, totalSupplied);
 
   const schema = useMemo(() => createStakeFormSchema({ maxAmount, isSafeWallet }), [maxAmount, isSafeWallet]);
   const formMethods = useForm<StakeUnderlyingFormValues>({

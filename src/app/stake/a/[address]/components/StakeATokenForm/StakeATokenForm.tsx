@@ -14,6 +14,7 @@ import { useSafeApproveAndStake } from "@/hooks/useSafeApproveAndStake";
 import { useStake } from "@/hooks/useStake";
 import { useTxFormSignature } from "@/providers/TxFormProvider/TxFormContext";
 import { Reserve, StkToken } from "@/types/token";
+import { calculateMaxStakeAmount } from "@/utils/calculations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
@@ -37,7 +38,7 @@ export const StakeATokenForm = ({ asset, stkToken, reserves }: StakeATokenFormPr
 
   const reserve = stkToken.reserve!;
   const { reserveId, balance, decimals, symbol, latestAnswer } = reserve!;
-  const maxAmount = balance || 0n;
+  const maxAmount = calculateMaxStakeAmount(stkToken, balance || 0n);
 
   const schema = useMemo(
     () =>

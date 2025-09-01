@@ -4,6 +4,6 @@ export { calculateHealthFactor, calculateNewHealthFactor, getHealthStatus } from
 export type { CalculateHealthFactorArgs, CalculateNewHealthFactorArgs, HealthFactorStatus } from "./healthFactor";
 export { calculateAPYEarnings, calculateSimpleInterest } from "./interest";
 export { calculateMetrics } from "./metrics";
-export { calculateMaxSupply } from "./reserves";
+export { calculateMaxSupply, calculateMaxUnderlyingStake } from "./reserves";
 export { sumUpAllRewards } from "./rewards";
-export { calculateAvailableToStakeUsd } from "./staking";
+export { calculateAvailableToStakeUsd, calculateMaxStakeAmount } from "./staking";
