@@ -1,33 +1,26 @@
 export const UMBRELLA_BATCH_HELPER_ABI = [
   {
     inputs: [
-      { internalType: "address", name: "rewardsController", type: "address" },
-      { internalType: "address", name: "owner", type: "address" },
+      { internalType: "address", name: "rewardsController_", type: "address" },
+      { internalType: "address", name: "owner_", type: "address" },
     ],
     stateMutability: "nonpayable",
     type: "constructor",
   },
-  {
-    inputs: [{ internalType: "address", name: "target", type: "address" }],
-    name: "AddressEmptyCode",
-    type: "error",
-  },
+  { inputs: [{ internalType: "address", name: "target", type: "address" }], name: "AddressEmptyCode", type: "error" },
+  { inputs: [], name: "EnforcedPause", type: "error" },
   { inputs: [], name: "EthTransferFailed", type: "error" },
+  { inputs: [], name: "ExpectedPause", type: "error" },
   { inputs: [], name: "FailedCall", type: "error" },
   { inputs: [], name: "InvalidEdgeToken", type: "error" },
   { inputs: [], name: "NotInitializedStake", type: "error" },
   { inputs: [], name: "OnlyRescueGuardian", type: "error" },
-  {
-    inputs: [{ internalType: "address", name: "owner", type: "address" }],
-    name: "OwnableInvalidOwner",
-    type: "error",
-  },
+  { inputs: [{ internalType: "address", name: "owner", type: "address" }], name: "OwnableInvalidOwner", type: "error" },
   {
     inputs: [{ internalType: "address", name: "account", type: "address" }],
     name: "OwnableUnauthorizedAccount",
     type: "error",
   },
-  { inputs: [], name: "PathFromOnlyStakeTokenCouldBeInitialized", type: "error" },
   {
     inputs: [{ internalType: "address", name: "token", type: "address" }],
     name: "SafeERC20FailedOperation",
@@ -37,7 +30,7 @@ export const UMBRELLA_BATCH_HELPER_ABI = [
   { inputs: [], name: "ZeroAmount", type: "error" },
   {
     anonymous: false,
-    inputs: [{ indexed: false, internalType: "address", name: "stakeToken", type: "address" }],
+    inputs: [{ indexed: true, internalType: "address", name: "stakeToken", type: "address" }],
     name: "AssetPathInitialized",
     type: "event",
   },
@@ -69,6 +62,18 @@ export const UMBRELLA_BATCH_HELPER_ABI = [
       { indexed: true, internalType: "address", name: "newOwner", type: "address" },
     ],
     name: "OwnershipTransferred",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [{ indexed: false, internalType: "address", name: "account", type: "address" }],
+    name: "Paused",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [{ indexed: false, internalType: "address", name: "account", type: "address" }],
+    name: "Unpaused",
     type: "event",
   },
   {
@@ -187,6 +192,14 @@ export const UMBRELLA_BATCH_HELPER_ABI = [
     stateMutability: "view",
     type: "function",
   },
+  { inputs: [], name: "pause", outputs: [], stateMutability: "nonpayable", type: "function" },
+  {
+    inputs: [],
+    name: "paused",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
   {
     inputs: [
       {
@@ -226,13 +239,7 @@ export const UMBRELLA_BATCH_HELPER_ABI = [
     stateMutability: "nonpayable",
     type: "function",
   },
-  {
-    inputs: [],
-    name: "renounceOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
+  { inputs: [], name: "renounceOwnership", outputs: [], stateMutability: "nonpayable", type: "function" },
   {
     inputs: [{ internalType: "address", name: "newOwner", type: "address" }],
     name: "transferOwnership",
@@ -240,6 +247,7 @@ export const UMBRELLA_BATCH_HELPER_ABI = [
     stateMutability: "nonpayable",
     type: "function",
   },
+  { inputs: [], name: "unpause", outputs: [], stateMutability: "nonpayable", type: "function" },
   {
     inputs: [],
     name: "whoCanRescue",
