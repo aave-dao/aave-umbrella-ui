@@ -26,7 +26,7 @@ export default function WithdrawPage(props: WithdrawPageProps) {
   const stkToken = stkTokens?.find((token) => token.address === address);
 
   useEffect(() => {
-    if (status !== "withdraw") {
+    if (status !== "withdraw" && status !== "immediate-withdraw") {
       router.push("/");
     }
   }, [router, status]);

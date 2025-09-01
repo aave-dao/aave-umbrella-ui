@@ -1,4 +1,5 @@
 import { useUmbrellaCooldownData } from "@/hooks/useAllUmbrellaCooldowns/useUmbrellaCooldownData";
+import { useUmbrellaData } from "@/hooks/useUmbrellaData";
 import { Address } from "viem";
 import { useEffect, useState } from "react";
 import { CooldownStatus } from "@/types/cooldown";
@@ -25,8 +26,14 @@ export const useUmbrellaCooldownStatus = (address: Address) => {
   const setCooldownStatus = useDashboardStore.use.setCooldownStatus();
 
   const { data } = useUmbrellaCooldownData(address);
+  const { data: umbrellaData } = useUmbrellaData();
   const { endOfCooldown, withdrawalEndsAt } = data || {};
-  const status = calculateStatus(now, endOfCooldown, withdrawalEndsAt);
+
+  const configuredCooldownPeriod = umbrellaData?.find((item) => item.stakeTokenConfig.stakeToken.address === address)
+    ?.stakeTokenConfig.cooldown;
+
+  const status =
+    configuredCooldownPeriod === 0 ? "immediate-withdraw" : calculateStatus(now, endOfCooldown, withdrawalEndsAt);
 
   useEffect(() => {
     const updateStatus = () => {

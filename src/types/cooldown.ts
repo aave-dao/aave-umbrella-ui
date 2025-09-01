@@ -1,1 +1,1 @@
-export type CooldownStatus = "cooldown" | "withdraw" | "none";
+export type CooldownStatus = "cooldown" | "withdraw" | "none" | "immediate-withdraw";
