@@ -1,7 +1,7 @@
-import { cn } from "@/utils/cn";
 import * as DialogPrimitives from "@radix-ui/react-dialog";
-import { XIcon } from "lucide-react";
 import { ComponentPropsWithoutRef, ComponentRef, forwardRef } from "react";
+import { cn } from "@/utils/cn";
+import { XIcon } from "lucide-react";
 
 export const ModalRoot = DialogPrimitives.Root;
 
@@ -13,7 +13,7 @@ export const ModalBody = forwardRef<
 >(({ children, className, ...props }, ref) => {
   return (
     <DialogPrimitives.Portal>
-      <DialogPrimitives.Overlay className="fixed top-0 right-0 bottom-0 left-0 grid place-items-center overflow-y-auto bg-white/80 py-14 backdrop-blur-xs">
+      <DialogPrimitives.Overlay className="dark:bg-main-950/80 fixed top-0 right-0 bottom-0 left-0 grid place-items-center overflow-y-auto bg-white/80 py-14 backdrop-blur-xs">
         <DialogPrimitives.Content ref={ref} className={cn("focus:outline-none", className)} {...props}>
           {children}
         </DialogPrimitives.Content>

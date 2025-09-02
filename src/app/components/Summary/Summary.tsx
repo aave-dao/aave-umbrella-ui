@@ -6,6 +6,7 @@ import { calculateAvailableToStakeUsd, calculateMetrics, calculateSimpleInterest
 import { CoinsIcon } from "lucide-react";
 import Image from "next/image";
 import { useAccount } from "wagmi";
+import { AccountingDetailsModal } from "./AccountingDetailsModal";
 
 export type SummaryProps = {
   umbrellaTokens?: StkToken[];
@@ -29,7 +30,7 @@ export const Summary = ({ umbrellaTokens, assets }: SummaryProps) => {
       <div className="bg-main-950 flex grow items-center justify-between px-6 py-6 md:justify-start md:gap-4 md:px-4 lg:px-10 dark:bg-[#17171a]">
         <SummaryChart totalStaked={totalStakedUsd} availableToStake={availableToStakeUsd} />
 
-        <div className="flex flex-col justify-between gap-4 md:grow-1 md:flex-row md:items-center md:gap-0">
+        <div className="relative flex flex-col justify-between gap-4 md:grow-1 md:flex-row md:items-start md:gap-0">
           <div className="flex flex-col gap-2 md:mr-auto">
             <h2 className="text-secondary-500">Total Staked</h2>
             <div className="flex items-end gap-1">
@@ -45,14 +46,18 @@ export const Summary = ({ umbrellaTokens, assets }: SummaryProps) => {
                 className="mb-1 text-xs font-semibold text-[#E2E7F2] md:mb-2 md:text-base"
               />
             </div>
+            <AccountingDetailsModal umbrellaTokens={umbrellaTokens} assets={assets} />
           </div>
 
           <div className="flex flex-col gap-1.5 md:gap-2">
             <div className="text-secondary-500 flex items-center gap-2 text-xl">
               <h2 className="text-secondary-500">You are earning</h2>
-              <NumberDisplay value={totalApy} type="percent" className="text-base font-semibold md:text-lg" />
+              <NumberDisplay
+                value={totalApy}
+                type="percent"
+                className="tracking-none -mt-px text-base font-semibold md:text-lg"
+              />
             </div>
-
             <div className="flex flex-col md:flex-row md:gap-7">
               <div className="flex flex-row items-center not-md:gap-1.5 md:flex-col md:items-start">
                 <div className="text-xs text-[#BCBBBB] md:text-base">Monthly</div>
