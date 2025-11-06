@@ -1,16 +1,10 @@
 import { SignableTxForm } from "@/types/form";
-import { z, ZodType } from "zod";
 import { ApprovalSchema, PermitSchema, validatePermitAndApproval } from "@/utils/shemas";
+import { z } from "zod";
 
 export type StakeUnderlyingFormValues = SignableTxForm;
 
-export const createStakeFormSchema = ({
-  maxAmount,
-  isSafeWallet,
-}: {
-  maxAmount: bigint;
-  isSafeWallet: boolean;
-}): ZodType<StakeUnderlyingFormValues> => {
+export const createStakeFormSchema = ({ maxAmount, isSafeWallet }: { maxAmount: bigint; isSafeWallet: boolean }) => {
   return z
     .object({
       amount: z.coerce.bigint().positive().max(maxAmount),

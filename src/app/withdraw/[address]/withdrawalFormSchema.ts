@@ -1,7 +1,7 @@
-import { WithdrawalMethod } from "@/types/withdraw";
-import { z, ZodType } from "zod";
-import { ApprovalSchema, PermitSchema, validatePermitAndApproval } from "@/utils/shemas";
 import { SignableTxForm } from "@/types/form";
+import { WithdrawalMethod } from "@/types/withdraw";
+import { ApprovalSchema, PermitSchema, validatePermitAndApproval } from "@/utils/shemas";
+import { z } from "zod";
 
 export type WithdrawalFormValues = SignableTxForm & {
   withdrawalMethod: WithdrawalMethod;
@@ -13,7 +13,7 @@ export const createWithdrawalFormSchema = ({
 }: {
   maxAmount: bigint;
   isSafeWallet: boolean;
-}): ZodType<WithdrawalFormValues> => {
+}) => {
   return z
     .object({
       amount: z.coerce.bigint().positive().max(maxAmount),

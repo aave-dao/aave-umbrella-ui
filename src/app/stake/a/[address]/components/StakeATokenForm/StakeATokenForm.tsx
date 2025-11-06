@@ -53,9 +53,6 @@ export const StakeATokenForm = ({ asset, stkToken, reserves }: StakeATokenFormPr
     resolver: zodResolver(schema),
     mode: "onChange",
   });
-  const {
-    formState: { errors },
-  } = formMethods;
 
   const { stake, data: hash, isPending: isTxPending, error: depositError } = useStake();
   const {

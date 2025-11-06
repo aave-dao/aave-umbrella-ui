@@ -1,7 +1,6 @@
 import { config } from "@/configs/wagmi";
 import SafeAppsSDK, { BaseTransaction, SafeInfo } from "@safe-global/safe-apps-sdk";
-import { sendTransaction } from "@wagmi/core";
-import { sendCalls } from "@wagmi/core/experimental";
+import { sendCalls, sendTransaction } from "@wagmi/core";
 import { Address, Hash } from "viem";
 
 export type SendSafeTxsContext = { sdk: SafeAppsSDK; safe: SafeInfo };
@@ -15,9 +14,9 @@ export const sendSafeTxs = async (txs: BaseTransaction[], { sdk, safe }: SendSaf
     try {
       await sendCalls(config, {
         calls: txs.map((tx) => ({
-          to: tx.to,
+          to: tx.to as Address,
           value: BigInt(tx.value),
-          data: tx.data,
+          data: tx.data as Hash,
         })),
       });
     } catch (e) {
