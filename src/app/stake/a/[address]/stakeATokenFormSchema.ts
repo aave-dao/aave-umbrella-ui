@@ -2,7 +2,7 @@ import { SignableTxForm } from "@/types/form";
 import { Reserve } from "@/types/token";
 import { calculateNewHealthFactor } from "@/utils/calculations";
 import { ApprovalSchema, PermitSchema, validatePermitAndApproval } from "@/utils/shemas";
-import { z, ZodType } from "zod";
+import { z } from "zod";
 
 export type StakeATokenFormValues = SignableTxForm;
 
@@ -16,7 +16,7 @@ export const createStakeATokenFormSchema = ({
   reserves: Reserve[];
   maxAmount: bigint;
   isSafeWallet: boolean;
-}): ZodType<StakeATokenFormValues> => {
+}) => {
   return z
     .object({
       amount: z.coerce.bigint().positive().max(maxAmount),

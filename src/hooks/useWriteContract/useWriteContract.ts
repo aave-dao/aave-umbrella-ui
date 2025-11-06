@@ -7,7 +7,7 @@ import { useWriteContract as useWagmiWriteContract } from "wagmi";
 export const useWriteContract = () => {
   const { writeContractAsync, error, ...rest } = useWagmiWriteContract();
 
-  const wrappedWriteContractAsync: typeof writeContractAsync = useCallback(
+  const wrappedWriteContractAsync = useCallback<typeof writeContractAsync>(
     async function (...args) {
       const { chainId } = args[0];
 
@@ -16,6 +16,7 @@ export const useWriteContract = () => {
       }
 
       await ensureCorrectChainForTx(chainId as ChainId);
+      // @ts-expect-error - TODO: It should be inferred automatically, but it's not working
       return writeContractAsync(...args);
     },
     [writeContractAsync],
