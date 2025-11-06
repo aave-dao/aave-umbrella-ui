@@ -42,6 +42,7 @@ export const StakedSummary = memo(({ stkTokens }: StakedSummaryProps) => {
       decimals,
       latestAnswerFormatted,
       targetLiquidity,
+      maxTotalAssets,
       underlying,
       isUnderlyingStataToken,
       apyData,
@@ -49,6 +50,7 @@ export const StakedSummary = memo(({ stkTokens }: StakedSummaryProps) => {
 
     const stakedUSD = Number(formatUnits(totalAssets, decimals)) * latestAnswerFormatted;
     const targetLiquidityUSD = Number(formatUnits(targetLiquidity, decimals)) * latestAnswerFormatted;
+    const maxTotalAssetsUSD = Number(formatUnits(maxTotalAssets, decimals)) * latestAnswerFormatted;
 
     return (
       <div key={address} className="border-main-200 flex flex-col gap-4 border-b pb-4 last:border-b-0 last:pb-0">
@@ -70,6 +72,10 @@ export const StakedSummary = memo(({ stkTokens }: StakedSummaryProps) => {
           <div className="flex flex-col gap-1">
             <div className="text-main-500">Target Liquidity</div>
             <NumberDisplay value={targetLiquidityUSD} type="currency" className="font-bold" />
+          </div>
+          <div className="flex flex-col gap-1">
+            <div className="text-main-500">Supply Cap</div>
+            <NumberDisplay value={maxTotalAssetsUSD} type="currency" className="font-bold" />
           </div>
           <div className="flex flex-col gap-1">
             <div className="text-main-500">Current Yield</div>
@@ -102,6 +108,7 @@ export const StakedSummary = memo(({ stkTokens }: StakedSummaryProps) => {
       underlying,
       isUnderlyingStataToken,
       apyData,
+      maxTotalAssets,
     } = selectedToken;
 
     const rewardColors = ["bg-green-300", "bg-orange-300", "bg-red-300", "bg-pink-300", "bg-yellow-300"];
@@ -110,6 +117,7 @@ export const StakedSummary = memo(({ stkTokens }: StakedSummaryProps) => {
     const targetLiquidityUSD = Number(formatUnits(targetLiquidity, decimals)) * latestAnswerFormatted;
 
     const currentUmbrellaData = umbrellaData?.find((data) => data.stakeTokenConfig.stakeToken.address === address);
+    const maxTotalAssetsUSD = Number(formatUnits(maxTotalAssets, decimals)) * latestAnswerFormatted;
 
     return (
       <ModalRoot open={!!selectedToken} onOpenChange={(open) => !open && setSelectedToken(null)}>
@@ -133,6 +141,10 @@ export const StakedSummary = memo(({ stkTokens }: StakedSummaryProps) => {
                   <div className="flex flex-col gap-2">
                     <div className="text-main-500 text-sm font-medium">Total Staked</div>
                     <NumberDisplay value={stakedUSD} type="currency" className="text-lg font-bold" />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <div className="text-main-500 text-sm font-medium">Supply Cap</div>
+                    <NumberDisplay value={maxTotalAssetsUSD} type="currency" className="text-lg font-bold" />
                   </div>
 
                   <div className="flex flex-col gap-4">
@@ -342,12 +354,14 @@ export const StakedSummary = memo(({ stkTokens }: StakedSummaryProps) => {
                   decimals,
                   latestAnswerFormatted,
                   targetLiquidity,
+                  maxTotalAssets,
                   underlying,
                   isUnderlyingStataToken,
                   apyData,
                 }) => {
                   const stakedUSD = Number(formatUnits(totalAssets, decimals)) * latestAnswerFormatted;
                   const targetLiquidityUSD = Number(formatUnits(targetLiquidity, decimals)) * latestAnswerFormatted;
+                  const maxTotalAssetsUSD = Number(formatUnits(maxTotalAssets, decimals)) * latestAnswerFormatted;
 
                   return (
                     <Tooltip
@@ -393,6 +407,12 @@ export const StakedSummary = memo(({ stkTokens }: StakedSummaryProps) => {
                             <div className="dark:text-main-500">Target Liquidity</div>
                             <div className="text-main-900 dark:text-white">
                               <NumberDisplay value={targetLiquidityUSD} type="currency" className="font-bold" />
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="dark:text-main-500">Supply Cap</div>
+                            <div className="text-main-900 dark:text-white">
+                              <NumberDisplay value={maxTotalAssetsUSD} type="currency" className="font-bold" />
                             </div>
                           </div>
                           <div className="bg-main-100 dark:bg-main-600 my-2 h-px w-full" />

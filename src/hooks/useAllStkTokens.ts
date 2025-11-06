@@ -53,7 +53,7 @@ export const useAllStkTokens = () => {
       const [aggregatedData, pathData, userAggregatedData, userPathData] = data;
 
       return aggregatedData
-        .map(({ stakeTokenData, rewardsTokenData, totalAssets, targetLiquidity }, index) => {
+        .map(({ stakeTokenData, rewardsTokenData, totalAssets, targetLiquidity, maxTotalAssets }, index) => {
           const { stakeUserBalance, rewardsTokenUserData } = userAggregatedData[index] ?? {};
           const stkTokenPathData = pathData[index] as StkTokenPathData;
           const stkTokenUserPathData = userPathData[index] as UserPathData;
@@ -121,6 +121,7 @@ export const useAllStkTokens = () => {
             totalAssets,
             totalRewardsUSDAmount: rewards.reduce((acc, { usdAmount }) => acc + (usdAmount ?? 0), 0),
             targetLiquidity,
+            maxTotalAssets,
             rewards,
             reserve: reserve ?? null,
             stata:

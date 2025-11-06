@@ -28,8 +28,10 @@ export const MARKETS: Market[] = [
           oracle: AaveV3BaseSepolia.ORACLE,
           rewardsController: UmbrellaBaseSepolia.UMBRELLA_REWARDS_CONTROLLER,
           umbrellaHelper: UmbrellaBaseSepolia.UMBRELLA,
-          batchHelper: UmbrellaBaseSepolia.UMBRELLA_BATCH_HELPER,
-          umbrellaDataAggregationHelper: UmbrellaBaseSepolia.DATA_AGGREGATION_HELPER,
+          // batchHelper: UmbrellaBaseSepolia.UMBRELLA_BATCH_HELPER,
+          batchHelper: "0x32eb722eF6fC2B5ea50e833Fb538769fF09A6C1c", // New version
+          // umbrellaDataAggregationHelper: UmbrellaBaseSepolia.DATA_AGGREGATION_HELPER,
+          umbrellaDataAggregationHelper: "0xDdE9091B6F9003f3b7070Ce7c377Eee09a8e0245", // New version
           wrapNativeTokenAddress: AaveV3BaseSepolia.ASSETS.WETH.UNDERLYING,
         } as const,
       ]

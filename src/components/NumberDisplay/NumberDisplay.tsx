@@ -25,6 +25,11 @@ export const NumberDisplay = ({
       prefix = customPrefix ? `${customPrefix}<` : "<";
     }
 
+    if (value > 1e15) {
+      displayValue = 1e15;
+      prefix = customPrefix ? `${customPrefix}>` : ">";
+    }
+
     return (
       <NumberFlow
         value={displayValue}
@@ -49,6 +54,11 @@ export const NumberDisplay = ({
     if (value > 0 && value < 0.01) {
       displayValue = 0.01;
       prefix = customPrefix ? `${customPrefix}<` : "<";
+    }
+
+    if (value > 1e15) {
+      displayValue = 1e15;
+      prefix = customPrefix ? `${customPrefix}>` : ">";
     }
 
     return (

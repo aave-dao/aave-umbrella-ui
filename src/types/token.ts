@@ -95,6 +95,7 @@ export type StkToken = Token &
     totalAssets: bigint;
     totalRewardsUSDAmount: number;
     targetLiquidity: bigint;
+    maxTotalAssets: bigint;
     isUnderlyingStataToken: boolean;
     rewards: Reward[];
     reserve: Reserve | null;

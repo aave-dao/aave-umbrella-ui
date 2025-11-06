@@ -15,6 +15,7 @@ import { useSafeApproveAndStake } from "@/hooks/useSafeApproveAndStake";
 import { useStake } from "@/hooks/useStake";
 import { useTxFormSignature } from "@/providers/TxFormProvider/TxFormContext";
 import { StataToken, StkToken } from "@/types/token";
+import { calculateMaxStakeAmount } from "@/utils/calculations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
@@ -39,7 +40,7 @@ export const StakeStataTokenForm = ({ asset, stkToken, stataToken }: StakeStataT
     error: approveAndStakeError,
   } = useSafeApproveAndStake();
 
-  const maxAmount = stataToken.balance || 0n;
+  const maxAmount = calculateMaxStakeAmount(stkToken, stataToken.balance || 0n);
   const { decimals, latestAnswer } = stataToken;
 
   const schema = useMemo(() => createStakeStataFormSchema({ maxAmount, isSafeWallet }), [maxAmount, isSafeWallet]);

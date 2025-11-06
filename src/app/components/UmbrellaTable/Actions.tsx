@@ -74,7 +74,7 @@ export const Actions = ({ token }: ActionsProps) => {
 
   return (
     <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-center md:gap-4">
-      {status === "withdraw" && (
+      {(status === "withdraw" || status === "immediate-withdraw") && (
         <Button href={`/withdraw/${address}`} prefetch primary elevation={1} size="lg" className="gap-1 font-semibold">
           <ChevronsDownIcon size={16} />
           Withdraw
